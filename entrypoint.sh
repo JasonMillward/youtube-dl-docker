@@ -33,7 +33,10 @@ exitOnError $? "/downloads is not writable, please fix its ownership and/or perm
 
 while [ true ]
 do
-	youtube-dl --config-location /config/youtube-dl.conf 2>&1 | tee downloads/log.txt
-	sleep 21600
+  youtube-dl --config-location /config/youtube-dl.conf 2>&1 | tee downloads/log.txt
+
+  pcregrep -o1 -o2 -o3 -i '(youtube)\](\s)([a-zA-Z0-9]{5,})\:' /downloads/log.txt | sort -u > config/youtube-dl-archive.txt
+
+  sleep 21600
 done
 

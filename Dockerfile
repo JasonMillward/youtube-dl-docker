@@ -26,7 +26,7 @@ ENV LOG=yes \
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["-h"]
 COPY entrypoint.sh /
-RUN apk add -q --progress --update --no-cache ca-certificates wget ffmpeg python gnupg curl && \
+RUN apk add -q --progress --update --no-cache ca-certificates wget ffmpeg python gnupg curl pcre-tools && \
     LATEST=$(wget -qO- https://api.github.com/repos/rg3/youtube-dl/releases/latest | grep '"tag_name": ' | sed -E 's/.*"([^"]+)".*/\1/') && \
     LATEST=${YOUTUBE_DL_OVERWRITE:-$LATEST} && \
     wget -q https://github.com/rg3/youtube-dl/releases/download/$LATEST/youtube-dl -O /usr/local/bin/youtube-dl && \
