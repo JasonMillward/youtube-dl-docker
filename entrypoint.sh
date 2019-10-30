@@ -31,10 +31,9 @@ printf "\n\n"
 test -w "/downloads"
 exitOnError $? "/downloads is not writable, please fix its ownership and/or permissions"
 
-
 while [ true ]
 do
 	youtube-dl --config-location /config/youtube-dl.conf 2>&1 | tee downloads/log.txt
-	sleep 600
+	sleep 21600
 done
 
