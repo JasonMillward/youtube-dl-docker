@@ -35,7 +35,7 @@ while [ true ]
 do
   youtube-dl --config-location /config/youtube-dl.conf 2>&1 | tee downloads/log.txt
 
-  pcregrep -o1 -o2 -o3 -i '(youtube)\](\s)([a-zA-Z0-9]{5,})\:' /downloads/log.txt >> /config/youtube-dl-archive.txt
+  pcregrep --buffer-size=256000 -o1 -o2 -o3 -i '(youtube)\](\s)([a-zA-Z0-9\-\_]{5,})\:' /downloads/log.txt >> /config/youtube-dl-archive.txt
 
   sort -u -o /config/youtube-dl-archive.txt /config/youtube-dl-archive.txt
 
